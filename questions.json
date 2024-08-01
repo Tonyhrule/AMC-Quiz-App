@@ -1,0 +1,52 @@
+[
+    {
+        "question": "What is the value of 1 + 2 + 3 + 4 + ... + 10?",
+        "options": ["45", "50", "55", "60"],
+        "correct_option": "55"
+    },
+    {
+        "question": "What is the smallest positive integer that is divisible by both 2 and 3?",
+        "options": ["2", "3", "4", "6"],
+        "correct_option": "6"
+    },
+    {
+        "question": "If a triangle has side lengths 5, 12, and 13, what type of triangle is it?",
+        "options": ["Equilateral", "Isosceles", "Right", "Scalene"],
+        "correct_option": "Right"
+    },
+    {
+        "question": "What is the sum of the angles in a hexagon?",
+        "options": ["360 degrees", "540 degrees", "720 degrees", "900 degrees"],
+        "correct_option": "720 degrees"
+    },
+    {
+        "question": "What is the area of a circle with radius 7?",
+        "options": ["49π", "14π", "28π", "21π"],
+        "correct_option": "49π"
+    },
+    {
+        "question": "If x^2 - 5x + 6 = 0, what are the values of x?",
+        "options": ["2 and 3", "1 and 6", "2 and 5", "1 and 3"],
+        "correct_option": "2 and 3"
+    },
+    {
+        "question": "What is the next prime number after 7?",
+        "options": ["9", "11", "13", "15"],
+        "correct_option": "11"
+    },
+    {
+        "question": "What is the least common multiple of 4 and 6?",
+        "options": ["12", "24", "18", "6"],
+        "correct_option": "12"
+    },
+    {
+        "question": "In a right triangle, one angle measures 35 degrees. What is the measure of the other non-right angle?",
+        "options": ["45 degrees", "55 degrees", "65 degrees", "75 degrees"],
+        "correct_option": "55 degrees"
+    },
+    {
+        "question": "What is the value of 3!?",
+        "options": ["3", "6", "9", "12"],
+        "correct_option": "6"
+    }
+]
