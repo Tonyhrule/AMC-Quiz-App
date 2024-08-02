@@ -1,7 +1,8 @@
-import os
 import openai
+import streamlit as st
 
-openai.api_key = os.getenv('OPENAI_API_KEY')
+# Load API key from Streamlit secrets
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 def get_explanation(question, correct_option):
     prompt = f"Explain why the correct answer to the question '{question}' is '{correct_option}'."
