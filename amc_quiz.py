@@ -7,7 +7,6 @@ from openai_utils import get_explanation, ask_question
 with open('questions.json', 'r') as file:
     questions = json.load(file)
 
-# Function to get a random question
 def get_random_question():
     return random.choice(questions)
 
@@ -38,58 +37,41 @@ def add_question():
 # Custom CSS for styling
 st.markdown("""
     <style>
-        .title {
-            text-align: center;
-            font-size: 2.5em;
-            color: #4CAF50;
-        }
-        .question {
-            font-size: 1.2em;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        .radio-label {
-            font-size: 1em;
-            color: #555;
-        }
-        .btn-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        .score {
-            font-size: 1.5em;
-            color: #4CAF50;
-            margin-top: 30px;
-        }
-        .explanation {
-            margin-top: 10px;
-            color: #000;
-        }
+        body { background-color: #f0f2f6; color: #333; font-family: Arial, sans-serif; }
+        .title { text-align: center; font-size: 3em; color: #ffffff; background-color: #4caf50; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+        .question { font-size: 1.5em; margin: 20px 0; color: #333; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        .radio-label { font-size: 1.2em; }
+        .btn-container { display: flex; justify-content: space-between; margin: 20px 0; }
+        .score { font-size: 2em; color: #333; margin: 20px 0 10px 0; background-color: #ffffff; padding: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        .explanation { margin-top: 10px; color: #333; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        .chatbot { margin-top: 10px; padding: 20px; background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        .container { display: flex; justify-content: center; align-items: center; flex-direction: column; padding: 20px; }
+        .button { background-color: #007BFF; color: white; font-size: 1.2em; padding: 10px; border: none; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 10px; }
+        .button:hover { background-color: #0056b3; }
     </style>
 """, unsafe_allow_html=True)
 
 # Page title
 st.markdown("<div class='title'>AMC Quiz App</div>", unsafe_allow_html=True)
 
-# Display the current question
+# Main container
+st.markdown("<div class='container'>", unsafe_allow_html=True)
+
 current_question_idx = st.session_state.current_question_idx
 if current_question_idx < len(st.session_state.questions):
     question = st.session_state.questions[current_question_idx]
     st.markdown(f"<div class='question'><strong>Question {current_question_idx + 1}:</strong> {question['question']}</div>", unsafe_allow_html=True)
     options = question['options']
 
-    # Create a radio button for options
-    user_answer = st.radio("Choose an answer:", options, key=f"q{current_question_idx}")
+    user_answer = st.radio("Choose an answer:", options, key=f"q{current_question_idx}", label_visibility="collapsed")
 
-    if st.button("Submit"):
+    if st.button("Submit", key="submit", use_container_width=True):
         st.session_state.user_answers[current_question_idx] = user_answer
         if user_answer == question['correct_option']:
             st.session_state.score += 1
-            st.success("Correct!")
+            st.success("Correct!", icon="✅")
         else:
-            st.error("Incorrect.")
+            st.error("Incorrect.", icon="❌")
             st.session_state.show_explanation[current_question_idx] = True
         st.experimental_rerun()
 
@@ -103,9 +85,8 @@ if current_question_idx < len(st.session_state.questions):
                 explanation = get_explanation(question['question'], question['correct_option'])
                 st.markdown(f"<div class='explanation'><strong>Explanation:</strong> {explanation}</div>", unsafe_allow_html=True)
 
-    # Navigation buttons
     st.markdown("<div class='btn-container'>", unsafe_allow_html=True)
-    if st.button("Next Question"):
+    if st.button("Next Question", key="next", use_container_width=True):
         if current_question_idx + 1 < len(st.session_state.questions):
             st.session_state.current_question_idx += 1
         else:
@@ -115,18 +96,19 @@ if current_question_idx < len(st.session_state.questions):
 else:
     st.markdown("<div class='score'>No more questions available.</div>", unsafe_allow_html=True)
 
-# Clear questions button
-if st.button("Clear Questions"):
+if st.button("Clear Questions", key="clear", use_container_width=True):
     reset_app()
     st.experimental_rerun()
 
-# Display the score
 st.markdown(f"<div class='score'>Score: {st.session_state.score}/{st.session_state.current_question_idx + 1}</div>", unsafe_allow_html=True)
 
-# Chatbot feature
+st.markdown("<div class='chatbot'>", unsafe_allow_html=True)
 st.markdown("### Chatbot")
 user_question = st.text_input("Ask a question about the current quiz question:")
-if st.button("Ask Chatbot"):
+if st.button("Ask Chatbot", key="ask", use_container_width=True):
     current_question = st.session_state.questions[current_question_idx]['question']
     chatbot_response = ask_question(current_question, user_question)
     st.markdown(f"**Chatbot:** {chatbot_response}")
+st.markdown("</div>", unsafe_allow_html=True)
+
+st.markdown("</div>", unsafe_allow_html=True)  # Close main container

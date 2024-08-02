@@ -3,10 +3,8 @@ import json
 from dotenv import load_dotenv
 import os
 
-# Load environment variables from .env file
 load_dotenv()
 
-# Set your OpenAI API key here
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
 def get_explanation(question, correct_option):
