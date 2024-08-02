@@ -68,7 +68,7 @@ if current_question_idx < len(st.session_state.questions):
 
     user_answer = st.radio("Choose an answer:", options, key=f"q{current_question_idx}")
 
-    if st.button("Submit", key="submit", use_container_width=True):
+    if st.button("Submit", key="submit"):
         st.session_state.user_answers[current_question_idx] = user_answer
         if user_answer == question['correct_option']:
             st.session_state.score += 1
@@ -89,7 +89,7 @@ if current_question_idx < len(st.session_state.questions):
                 st.markdown(f"<div class='explanation'><strong>Explanation:</strong> {explanation}</div>", unsafe_allow_html=True)
 
     st.markdown("<div class='btn-container'>", unsafe_allow_html=True)
-    if st.button("Next Question", key="next", use_container_width=True):
+    if st.button("Next Question", key="next"):
         if current_question_idx + 1 < len(st.session_state.questions):
             st.session_state.current_question_idx += 1
         else:
@@ -99,7 +99,7 @@ if current_question_idx < len(st.session_state.questions):
 else:
     st.markdown("<div class='score'>No more questions available.</div>", unsafe_allow_html=True)
 
-if st.button("Clear Questions", key="clear", use_container_width=True):
+if st.button("Clear Questions", key="clear"):
     reset_app()
     st.experimental_rerun()
 
@@ -108,7 +108,7 @@ st.markdown(f"<div class='score'>Score: {st.session_state.score}/{st.session_sta
 st.markdown("<div class='chatbot'>", unsafe_allow_html=True)
 st.markdown("### Chatbot")
 user_question = st.text_input("Ask a question about the current quiz question:")
-if st.button("Ask Chatbot", key="ask", use_container_width=True):
+if st.button("Ask Chatbot", key="ask"):
     current_question = st.session_state.questions[current_question_idx]['question']
     chatbot_response = ask_question(current_question, user_question)
     st.markdown(f"**Chatbot:** {chatbot_response}")
