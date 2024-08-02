@@ -60,8 +60,11 @@ st.markdown("<div class='container'>", unsafe_allow_html=True)
 current_question_idx = st.session_state.current_question_idx
 if current_question_idx < len(st.session_state.questions):
     question = st.session_state.questions[current_question_idx]
+    print(f"Current Question: {question}")
     st.markdown(f"<div class='question'><strong>Question {current_question_idx + 1}:</strong> {question['question']}</div>", unsafe_allow_html=True)
     options = question['options']
+    print(f"Options: {options}, Types: {[type(opt) for opt in options]}")
+    options = [str(opt) for opt in options]  # Ensure all options are strings
 
     user_answer = st.radio("Choose an answer:", options, key=f"q{current_question_idx}", label_visibility="collapsed")
 
