@@ -66,7 +66,7 @@ if current_question_idx < len(st.session_state.questions):
     print(f"Options: {options}, Types: {[type(opt) for opt in options]}")
     options = [str(opt) for opt in options]  # Ensure all options are strings
 
-    user_answer = st.radio("Choose an answer:", options, key=f"q{current_question_idx}", label_visibility="collapsed")
+    user_answer = st.radio("Choose an answer:", options, key=f"q{current_question_idx}")
 
     if st.button("Submit", key="submit", use_container_width=True):
         st.session_state.user_answers[current_question_idx] = user_answer
