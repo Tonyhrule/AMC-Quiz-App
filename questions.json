@@ -6,7 +6,7 @@
     },
     {
         "question": "Fiona leaves her house to go to the airport. She drives for 30 minutes at a constant rate of 40 miles per hour, then walks for 20 minutes at a constant rate of 3 miles per hour. She then goes on a train going 50 miles per hour for 12 minutes. How far has she traveled?",
-        "options": ["24 miles", "28 miles", "32 miles", "36 miles"],
+        "options": ["24 miles", "28 miles", "31 miles", "36 miles"],
         "correct_option": "28 miles"
     },
     {
