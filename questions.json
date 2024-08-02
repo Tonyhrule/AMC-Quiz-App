@@ -27,7 +27,7 @@
     {
         "question": "Fiona leaves her house to go to the airport. She drives for 30 minutes at a constant rate of 40 miles per hour, then walks for 20 minutes at a constant rate of 3.6 miles per hour. She then goes on a train going 50 miles per hour for 12 minutes. How far has she traveled?",
         "options": ["31.2", "32.2", "32.4", "33.8", "35.9"],
-        "correct_option": "32.4"
+        "correct_option": "31.2"
     },
     {
         "question": "Hexagon ABCDEF has side length 4. What is the area of this hexagon rounded to the nearest tenth?",

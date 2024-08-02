@@ -75,7 +75,7 @@ Ensure you have a questions.json file in the root directory of your project. Thi
 To start the app, navigate to the project directory and run the following command:
 
    ```bash
-   streamlit run amc_quiz.py
+   streamlit run streamlit_app.py
    ```
 
 This will start the Streamlit server, and you can access the app by opening a web browser and navigating to http://localhost:8501.
